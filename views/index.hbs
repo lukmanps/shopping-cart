@@ -1,0 +1,57 @@
+{{!-- 
+    <section>
+      <div class="container  mt-5 mt-5 mb-5 ">
+        <div class="row ">
+          {{#if login}}
+          {{#each products}}
+            <div class="col-6 col-md-6 col-lg-3  mt-4 mx-4 "  >
+              <div class="card bg-light p-2 text-center lh-sm" style="width: 18rem">
+                <img style="width:17em;height:auto;" src="{{this.Image}}" class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <h5 class="card-title">{{this.name}}</h5>
+                  <p class="card-text">{{this.price}}</p>
+                  <a href="/cart" class="btn btn-primary">Add To Cart</a>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+          {{else}}
+         {{#each products}}
+            <div class="col-6 col-md-6 col-lg-3 mt-4 mx-4"   >
+              <div class="card bg-light p-2 text-center lh-sm" style="width: 18rem">
+                <img style="width:17em;height:auto;" src="{{this.Image}}" class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <h5 class="card-title">{{this.name}}</h5>
+                  <p class="card-text">{{this.price}}</p>
+                  <a href="#" class="btn btn-primary">login TO ORDER</a>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+          {{/if}}
+        </div>
+      </div>
+    </section> --}}
+
+
+    <section>
+    <div class="container mt-5 mb-5">
+        <div class="row mt-5 mb-5">
+            {{#each productsDisplay}}
+            <div class="col-md-3 mt-3">
+                <div class="card" style="width: 18rem; height: 23rem">
+                    <img src="{{this.image}}" class="card-img-top" alt="{{this.name}}" style="height: 8rem; width: auto">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.name}}</h5>
+                        <p class="card-text">{{this.description}}</p>
+                        <p class="card-text">&#8377;{{this.price}}</p>
+                        <a href="#" class="btn btn-warning md-5 my-3">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <hr>
+    </div>
+    
+</section>

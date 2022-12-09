@@ -1,0 +1,34 @@
+<section>
+ 
+    <div class="container d-flex flex-row-reverse mt-2 ml-5">
+      
+        <a href="/admin/add-user" class="btn btn-primary btn-sm mt-2 mb-4">ADD USER</a>
+    </div>
+<div class="container">
+    <table class="table"id="userstable">
+  <thead>
+    <tr>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Edit / Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+    <tr>
+      <td>{{this.name}}</td>
+      <td>{{this.email}}</td>
+      
+      <td><a href="/admin/edit-user/{{this._id}}" class="btn btn-warning">Edit</a>
+      <a href="/admin/delete-user/{{this._id}}" class="btn btn-danger" onclick="return confirm('do you want to delete {{this.name}}')">Delete</a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>
+</section>
+<script>
+  $(document).ready( function () {
+    $('#userstable').DataTable();
+} );
+</script>

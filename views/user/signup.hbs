@@ -1,0 +1,194 @@
+
+<section class="vh-100" style="background-color: #eee;">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11">
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+  
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Create A new Account</p>
+  
+                  <form id="userForm" action ="/signup" method="post" class="mx-1 mx-md-4">
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        {{!-- <input type="text" id="form3Example1c" class="form-control" name="name" /> --}}
+                        {{!-- <label class="form-label" for="form3Example1c">Your Name</label> --}}
+                        <label class="form-label" for="form3Example4c">Name</label>
+                        <input id="name" type="text" name="name" class="form-control" placeholder="Name" required onblur="validateName()">
+                        
+                        <label id="name-error" class="errorLabel text-danger" for="name"></label>
+
+                      
+                      </div>
+                    </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        {{!-- <input type="email" id="email" class="form-control" name="email"required  onblur()=ValidateEmail()/>
+                               <label class="form-label" for="form3Example3c">Your Email</label>
+                        <label id="el" for="name" style="display: none; color:red;">This field is requierd</label>
+                      <label id="el-01" for="name" style="display: none; color:red;">Email does't start with number</label>
+                      <label id="el-02" for="name" style="display: none; color:relabeld;">Email is invalid</label> --}}
+                      <label class="form-label" for="form3Example4c">Email</label>
+                     <input id="email" type="email" name="email" class="form-control" placeholder="Email Address" required onblur="validateEmail()">
+                     
+                     <label id="email-error" class="errorLabel text-danger" for="email"></label>
+
+                      </div>
+                    </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="form3Example4c">Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Password" name="password" required onblur="validatePassword()"/>
+                        
+                        <label id="password-error" class="errorLabel text-danger" for="password"></label>
+
+  
+                        {{#if registered}}
+                        <p style="color:red">Registered Sucesssfully! Login To Continue
+                        </p>
+                        {{/if}}
+                        {{#if olduser}}
+                        <p style="color:red">already found
+                        </p>
+                        {{/if}}
+
+                      </div>
+                    </div>
+{{!--   
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="password" id="form3Example4cd" class="form-control"name="rppassword"   />
+                        <label class="form-label" for="form3Example4cd">Repeat your password</label>
+                      </div>
+                    </div> --}}
+  
+                     {{!-- <div class="form-check d-flex justify-content-center mb-5"> 
+                      <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                      <label class="form-check-label" for="form2Example3">
+                        I agree all statements in <a href="#!">Terms of service</a>
+                      </label>
+                    </div> --}}
+  
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                     <button name="button" id="button" type="button" class="btn btn-primary btn-lg" onclick="return validateForm()">Register</button>
+                     <label id="submit-error" class="errorLabel text-danger"  for="button"></label>
+
+                     </div>
+  
+                  </form>
+  
+                </div>
+                {{!-- <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+  
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                    class="img-fluid" alt="Sample image">
+  
+                </div> --}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+var nameError = document.getElementById('name-error');
+var emailError = document.getElementById('email-error');
+var mobileError = document.getElementById('mobile-error');
+var passwordError=document.getElementById('password-error')
+var submitError = document.getElementById('submit-error');
+
+
+
+function validateName() {
+    
+    var name= document.getElementById('name').value;
+
+    if(name == ''){
+        nameError.innerHTML = 'Name is required';
+        return false;
+    }
+    if(!name[0].match(/^(?=.*[A-Z])/)){
+         nameError.innerHTML = 'First letter should be capital'
+         return false
+    } 
+    nameError.innerHTML = '';
+        return true;
+}
+function validateEmail() {
+    var email = document.getElementById('email').value;
+
+    if(email.length == 0) {
+        emailError.innerHTML = 'Email is required';
+        return false;
+    }
+    if(!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+        emailError.innerHTML = 'Email invalid';
+        return false;
+    }
+    emailError.innerHTML = '';
+    return true;
+}
+
+function validatePassword(){
+    var password = document.getElementById('password').value;
+    if(password == ""){
+        passwordError.innerHTML = 'Password cannot be blank'
+        return false
+    }
+     if(!password[0].match(/^(?=.*[A-Z])/)){
+         passwordError.innerHTML = 'First letter should be capital'
+         return false
+    } 
+    
+    if(password.length <8){
+        passwordError.innerHTML = 'Atleast 8 characters'
+        return false
+    }
+    
+    if(!password.match(/^(?=.*[0-9])/)){
+         passwordError.innerHTML = 'Atleast use one number'
+         return false
+    }
+    if(!password.match(/^(?=.*[!@#$%^&*])/)){
+         passwordError.innerHTML = 'Atleast use one special character'
+         return false
+    } 
+    if(!password.match(/^(?=.*[a-z])/)){
+         passwordError.innerHTML = 'Use atleast one lowercase letter'
+         return false
+    } 
+ passwordError.innerHTML = "";
+    return true
+    
+
+}
+
+function validateForm() {
+
+    if(!validateEmail()  ||  !validateName() || !validatePassword()) {
+        
+        submitError.innerHTML = 'Please fix all errors to submit.';
+        setTimeout(function() {submitError.style.display = 'none';}, 3000);
+        return false;
+    }
+    else
+    {
+    document.getElementById('userForm').submit();
+    }
+}
+
+
+
+
+  </script>
+  
